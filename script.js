@@ -4,7 +4,7 @@
 // prints "hi" in the browser's dev tools console
 
 
-  let el, stackedit, openStackEdit;
+  // let el, stackedit, openStackEdit;
   let consolidated;
  
 
@@ -12,16 +12,16 @@
   console.log("script")
   window.onload = () => {
     console.log("LOAD")
-    el = document.querySelector('textarea');
+    let el = document.querySelector('textarea');
     consolidated = el.value;
     // console.log(el.value);
-    let stackedit = new window.Stackedit();
-     openStackEdit = () =>{
+    window.stackedit = new window.Stackedit();
+    window.openStackEdit = () =>{
         console.log("PPE")
 
       // Open the iframe
 
-      stackedit.openFile({
+      window.stackedit.openFile({
         name: 'Filename', // with an optional filename
         content: {
           text: el.value // and the Markdown content.
@@ -30,7 +30,7 @@
       
    }
   // Listen to StackEdit events and apply the changes to the textarea.
-  stackedit.on('fileChange', (file) => {
+  window.stackedit.on('fileChange', (file) => {
     el.value = file.content.text;
   });
   }
